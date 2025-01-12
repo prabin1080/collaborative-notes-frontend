@@ -1,0 +1,12 @@
+services:
+  nextjs:
+    build:
+      context: .
+    container_name: nextjs_frontend
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - API_BASE_URL=http://django:8000/api
+      - WS_BASE_URL=ws://django:8000/ws/note
+
