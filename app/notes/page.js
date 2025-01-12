@@ -32,6 +32,7 @@ export default function NotesPage() {
   };
 
   const createNote = async () => {
+    const token = localStorage.getItem("token");
     setFormError("");
     const res = await fetch(`${API_BASE_URL}/notes/`, {
       method: "POST",
@@ -51,6 +52,7 @@ export default function NotesPage() {
   };
 
   const deleteNote = async (id) => {
+    const token = localStorage.getItem("token");
     await fetch(`${API_BASE_URL}/notes/${id}/`, {
       method: "DELETE",
       headers: { Authorization: `Token ${token}` },
