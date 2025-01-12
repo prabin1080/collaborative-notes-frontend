@@ -1,17 +1,16 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useRouter, useParams } from "next/navigation";
+import { useParams } from "next/navigation";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { API_BASE_URL, WS_BASE_URL } from "@/utils/api";
 import Navbar from "@/components/Navbar";
 
 export default function EditNotePage() {
-  const router = useRouter();
+  // const router = useRouter();
   const { id } = useParams();
   const [note, setNote] = useState({ title: "", content: "" });
   const [onlineUsers, setOnlineUsers] = useState([]);
-  const token = localStorage.getItem("token");
+  // const token = localStorage.getItem("token");
   const [ws, setWs] = useState(null);
 
   useEffect(() => {
@@ -33,7 +32,7 @@ export default function EditNotePage() {
   };
 
   const connectWebSocket = () => {
-    const socket = new WebSocket(`${WS_BASE_URL}/${id}/?token=${token}`);
+    const socket = new WebSocket(`${WS_BASE_URL}/${id}/?token=${localStorage.getItem("token")}`);
     socket.onmessage = (event) => {
       const data = JSON.parse(event.data);
       if (data.content) {

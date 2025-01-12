@@ -11,9 +11,9 @@ export default function NotesPage() {
   const [notes, setNotes] = useState([]);
   const [newNote, setNewNote] = useState("");
   const [formError, setFormError] = useState("");
-  const token = localStorage.getItem("token");
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
     if (!token) {
       router.push("/auth/login");
       return;
@@ -22,6 +22,7 @@ export default function NotesPage() {
   }, []);
 
   const fetchNotes = async () => {
+    const token = localStorage.getItem("token");
     const res = await fetch(`${API_BASE_URL}/notes/`, {
       headers: { Authorization: `Token ${token}` },
     });
